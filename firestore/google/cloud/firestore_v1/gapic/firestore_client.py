@@ -208,19 +208,8 @@ class FirestoreClient(object):
                     )
                 self.transport = transport
         else:
-            if not channel:
-                channel = firestore_grpc_transport.FirestoreGrpcTransport.create_channel(
-                    address=self.SERVICE_ADDRESS,
-                    credentials=credentials,
-                    options={
-                        #'grpc.max_send_message_length': -1,
-                        #'grpc.max_receive_message_length': -1,
-                        'grpc.keepalive_time_ms': 60000,
-                    }.items()
-                )
-
             self.transport = firestore_grpc_transport.FirestoreGrpcTransport(
-                address=self.SERVICE_ADDRESS, channel=channel
+                address=self.SERVICE_ADDRESS, channel=channel, credentials=credentials
             )
 
         if client_info is None:
