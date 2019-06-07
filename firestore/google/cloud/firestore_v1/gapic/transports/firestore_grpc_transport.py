@@ -70,7 +70,7 @@ class FirestoreGrpcTransport(object):
         self._stubs = {"firestore_stub": firestore_pb2_grpc.FirestoreStub(channel)}
 
     @classmethod
-    def create_channel(cls, address="firestore.googleapis.com:443", credentials=None):
+    def create_channel(cls, address="firestore.googleapis.com:443", credentials=None, options=None):
         """Create and return a gRPC channel object.
 
         Args:
@@ -85,7 +85,7 @@ class FirestoreGrpcTransport(object):
             grpc.Channel: A gRPC channel object.
         """
         return google.api_core.grpc_helpers.create_channel(
-            address, credentials=credentials, scopes=cls._OAUTH_SCOPES
+            address, credentials=credentials, scopes=cls._OAUTH_SCOPES, options=options,
         )
 
     @property
