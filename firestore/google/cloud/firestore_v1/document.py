@@ -248,7 +248,7 @@ class DocumentReference(object):
 
         .. code-block:: python
 
-           >>> snapshot = document.get()
+           >>> snapshot = doc_ref.get()
            >>> snapshot.to_dict()
            {
                'foo': {
@@ -266,14 +266,14 @@ class DocumentReference(object):
            ...         'quux': 800,
            ...     },
            ... }
-           >>> document.update(field_updates)
+           >>> doc_ref.update(field_updates)
 
         then all of ``foo`` will be overwritten on the server and the new
         value will be
 
         .. code-block:: python
 
-           >>> snapshot = document.get()
+           >>> snapshot = doc_ref.get()
            >>> snapshot.to_dict()
            {
                'foo': {
@@ -290,14 +290,14 @@ class DocumentReference(object):
            >>> field_updates = {
            ...     'foo.quux': 800,
            ... }
-           >>> document.update(field_updates)
+           >>> doc_ref.update(field_updates)
 
         then only ``foo.quux`` will be updated on the server and the
         field ``foo.bar`` will remain intact:
 
         .. code-block:: python
 
-           >>> snapshot = document.get()
+           >>> snapshot = doc_ref.get()
            >>> snapshot.to_dict()
            {
                'foo': {
@@ -321,13 +321,13 @@ class DocumentReference(object):
            >>> field_updates = {
            ...     'other': firestore.DELETE_FIELD,
            ... }
-           >>> document.update(field_updates)
+           >>> doc_ref.update(field_updates)
 
         would update the value on the server to:
 
         .. code-block:: python
 
-           >>> snapshot = document.get()
+           >>> snapshot = doc_ref.get()
            >>> snapshot.to_dict()
            {
                'foo': {
@@ -346,13 +346,13 @@ class DocumentReference(object):
            >>> field_updates = {
            ...     'foo.now': firestore.SERVER_TIMESTAMP,
            ... }
-           >>> document.update(field_updates)
+           >>> doc_ref.update(field_updates)
 
         would update the value on the server to:
 
         .. code-block:: python
 
-           >>> snapshot = document.get()
+           >>> snapshot = doc_ref.get()
            >>> snapshot.to_dict()
            {
                'foo': {
